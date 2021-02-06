@@ -1,0 +1,19 @@
+<template>
+  <form action="http://127.0.0.1:8080/" method="get">
+    <input type="text" name="q" value.bind="model.q">
+    <br>
+    <br>
+    <div if.bind="displayModel.searchFor.length">
+      <label><input type="checkbox" name="withCherry" checked.two-way="model.withCherry">Cherry</label>
+      <label><input type="checkbox" name="withApple" checked.bind="model.withApple">Apple</label>
+    </div>
+    <br>
+    <br>
+    <input type="submit" value="Search" mdc-button unelevated class="big-round-shape-button">
+
+    <br><br>
+    <div>Search For: ${displayModel.searchFor ? displayModel.searchFor : 'HUY'}</div>
+    <br><br>
+    <div>Query: ${displayModel.router}</div>
+  </form>
+</template>
