@@ -47,7 +47,7 @@
                 </a>
               </div>
               <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-                <a repeat.for="filter of item.filteredWith" href="#">${filter.value}</a>/
+                <a repeat.for="filter of item.filteredWith" href="#">${filter.value}</a>
               </div>
             </div>
             <div class="mdc-layout-grid__inner">
@@ -64,7 +64,9 @@
                   <div slot="caption">
                     <div class="caption__item">
                       <span class="caption__item-text">דירוג:</span>
-                      <span class="caption__item-text">4 - adipisci</span>
+                      <span class="caption__item-text" repeat.for="rank of item.ranks">
+                        <span>${rank.name} - ${rank.value}</span>
+                      </span>
                     </div>
                     <div class="caption__item">
                       <span class="caption__item-text">quibusdam</span>
