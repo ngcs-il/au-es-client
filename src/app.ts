@@ -8,10 +8,10 @@ import { RouterConfiguration, Router, activationStrategy } from 'aurelia-router'
       this.router = router;
       config.title = 'Aurelia';
       config.options.pushState = true;
-      //config.options.root = '/';
+      config.options.root = '/';
       config.options.compareQueryParams = true;
       config.map([
-        { route: ['', 'search/:id'], name: 'search', moduleId: PLATFORM.moduleName('search'), activationStrategy: activationStrategy.replace }
+        { route: ['', 'search/:q?'], name: 'search', moduleId: PLATFORM.moduleName('search'), activationStrategy: activationStrategy.replace }
       ]);
     }
     

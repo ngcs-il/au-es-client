@@ -1,4 +1,31 @@
+@use '@material/typography/mdc-typography';
+
 @use '@material/button/mdc-button';
+
+@use '@material/checkbox/mdc-checkbox';
+@use '@material/checkbox';
+
+@use '@material/elevation/mdc-elevation';
+
+@use "@aurelia-mdc-web/expandable";
+
+@use '@material/form-field/mdc-form-field';
+@use '@material/form-field/_index' as form-field;
+
+@use '@material/icon-button/mdc-icon-button';
+@use '@material/icon-button/_index' as icon-button;
 
 @use "@material/layout-grid/mdc-layout-grid";
 @use "@aurelia-mdc-web/layout-grid";
+
+@use '@material/menu/mdc-menu';
+@use '@material/menu';
+@use '@material/list/mdc-list';
+@use '@material/menu-surface/mdc-menu-surface';
+
+@use '@material/ripple/mdc-ripple';
+@use '@material/ripple';
+
+@use "@material/textfield/mdc-text-field";
+@use "@material/textfield/_index" as textfield;
+@use "@aurelia-mdc-web/text-field" as AuTextField;

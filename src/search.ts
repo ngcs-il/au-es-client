@@ -1,11 +1,13 @@
+import { SearchResultDto, SearchResultItemFragmentDto } from './data/data-provider';
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavigationInstruction, RouteConfig } from 'aurelia-router';
+import { DataProvider } from 'data';
 
 class Query {
-  q: string;
-  withCherry = false;
-  withApple = false;
+  q = '';
+  withCherry;
+  withApple;
 }
 
 export class Search {
@@ -13,11 +15,31 @@ export class Search {
   model: Query = new Query() ;
   displayModel: any = {};
 
-  private activate(params: any, _: RouteConfig, navigationInstruction: NavigationInstruction): void {
-    this.model.q = params?.q;
-    this.model.withApple = <boolean>(params?.withApple == 'on');
-    this.model.withCherry = <boolean>(params?.withCherry == 'on');
-    this.displayModel.searchFor = params?.q;
+  data: SearchResultDto;
+
+  private async activate(params: any, _: RouteConfig, navigationInstruction: NavigationInstruction): Promise<void> {
+    this.displayModel.searchFor = JSON.stringify(params);
     this.displayModel.router = JSON.stringify(navigationInstruction.queryParams);
+    
+    setTimeout(()=> {
+      this.model.q = navigationInstruction.queryParams?.q;
+      this.model.withApple =  (navigationInstruction.queryParams?.withApple === 'on'? true:false); 
+      this.model.withCherry = (navigationInstruction.queryParams?.withCherry === 'on'? true:false);
+    }, 500);
+    
+    if (navigationInstruction.queryParams?.q?.length > 0) {
+      const dataProvider: DataProvider = new DataProvider();
+      this.data = await dataProvider.getSearchResults(navigationInstruction.queryParams.q, 10, 1);
+    }
+  }
+
+  private getHighlightItemIndex(idx: number, fragment: SearchResultItemFragmentDto): number {
+    for ( let i = 0; i < fragment?.highlights?.length; i++) {
+      if ( idx + 1 >= fragment?.highlights[i]?.start
+        && idx + 1 < fragment?.highlights[i]?.start + fragment?.highlights[i]?.count) {
+        return idx;
+      }
+    }
+    return null;
   }
 }

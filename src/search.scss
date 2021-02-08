@@ -1,0 +1,15 @@
+.search-item {
+  padding-bottom: 32px;
+}
+
+.text-fragment {
+  letter-spacing: .25px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  &__highlight {
+      background-color: #FEFFCA;
+  }
+}
