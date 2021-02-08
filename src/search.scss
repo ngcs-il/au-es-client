@@ -20,7 +20,7 @@
 .mdc-expandable {
   box-shadow: none;
  &.mdc-expandable--open {
-   margin: 7px 0 16px;
+   margin: 0;
  }
 }
 .mdc-expandable {
@@ -30,6 +30,7 @@
     flex-direction: row-reverse;
     padding: 0;
     transition: background-color .3s;
+    pointer-events: none;
     &:after,
     &:before {
       background-color: unset;
@@ -46,6 +47,7 @@
         height: 15px;
         width: 15px;
         margin-right: 0;
+        pointer-events: auto;
       }
     }
     &.mdc-expandable__header--open {
@@ -57,13 +59,11 @@
         height: 15px;
         width: 15px;
         margin-right: 0;
+        pointer-events: auto;
       }
     }
     .mdc-expandable__dropdown-icon-graphic {
       display: none;
-    }
-    &:hover {
-      background-color: rgba(241, 240, 240, 0.4);
     }
   }
   .mdc-expandable__caption {
