@@ -16,7 +16,7 @@ export class Search {
   displayModel: any = {};
 
   data: SearchResultDto;
-
+  toggle: false;
   private async activate(params: any, _: RouteConfig, navigationInstruction: NavigationInstruction): Promise<void> {
     this.displayModel.searchFor = JSON.stringify(params);
     this.displayModel.router = JSON.stringify(navigationInstruction.queryParams);
@@ -41,5 +41,9 @@ export class Search {
       }
     }
     return null;
+  }
+
+  toggleFilters() {
+    console.log('1111111')
   }
 }

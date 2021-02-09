@@ -1,6 +1,5 @@
 <template>
   <require from="./search.scss"></require>
-
   <form action="/" target="_self" method="get">
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
@@ -10,15 +9,79 @@
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1">
           <input type="submit" value="Search" mdc-button unelevated class="big-round-shape-button">
         </div>
+
       </div>
     </div>
-    
-    <br>
-    <br>
-    <div if.bind="displayModel.searchFor.length">
-      <label><input type="checkbox" name="withCherry" checked.bind="model.withCherry">Cherry</label>
-      <label><input type="checkbox" name="withApple" checked.bind="model.withApple">Apple</label>
+
+
+    <div class="search-form__filter-wrapper">
+
+      <div if.bind="displayModel.searchFor.length"
+           class="search-form__item _align-right">
+        <label><input type="checkbox" name="withCherry" checked.bind="model.withCherry">Cherry</label>
+        <label><input type="checkbox" name="withApple" checked.bind="model.withApple">Apple</label>
+      </div>
+
+
+      <div class="search-form__item _align-left">
+        <span class="search-form__toggle-btn"
+              click.delegate="toggle = !toggle">filter</span>
+          <div>
+            <div if.bind="toggle"
+
+                 class="search-form__wrapper-collection-filter">
+
+              <div class="search-form__sub-menu"
+                   mdc-menu-surface-anchor>
+                <span click.delegate="searchIn.open = !searchIn.open">filter-1</span>
+                <mdc-menu view-model.ref="searchIn" anchor.bind="cardAnchor" default-focus-state1="FIRST_ITEM">
+                  <mdc-list>
+                    <mdc-list-item>titles</mdc-list-item>
+                    <mdc-list-item>Content</mdc-list-item>
+                    <mdc-list-item>Memo's Titles</mdc-list-item>
+                    <mdc-list-item>Memo's Content</mdc-list-item>
+                  </mdc-list>
+                </mdc-menu>
+              </div>
+              <div class="search-form__sub-menu"
+                   mdc-menu-surface-anchor>
+                <span click.delegate="dateOfPresentation.open = !dateOfPresentation.open">filter-2</span>
+                <mdc-menu view-model.ref="dateOfPresentation" anchor.bind="cardAnchor" default-focus-state1="FIRST_ITEM">
+                  <mdc-list>
+                    <mdc-list-item>Any Time</mdc-list-item>
+                    <mdc-list-item>Past hour</mdc-list-item>
+                    <mdc-list-item>Past 24 hours</mdc-list-item>
+                    <mdc-list-item>Past week</mdc-list-item>
+                    <mdc-list-item>Past month</mdc-list-item>
+                    <mdc-list-item>Past year</mdc-list-item>
+                    <mdc-list-item>Past Custom range</mdc-list-item>
+                  </mdc-list>
+                </mdc-menu>
+              </div>
+              <div class="search-form__sub-menu"
+                   mdc-menu-surface-anchor>
+                <span click.delegate="bugs.open = !bugs.open">filter-1</span>
+                <mdc-menu view-model.ref="bugs" anchor.bind="cardAnchor" default-focus-state1="FIRST_ITEM">
+                  <mdc-list>
+                    <mdc-list-item>Appeals</mdc-list-item>
+                    <mdc-list-item>Legal Case</mdc-list-item>
+                    <mdc-list-item>Court Type</mdc-list-item>
+                    <mdc-list-item>Type of Interest</mdc-list-item>
+                    <mdc-list-item>Procedure</mdc-list-item>
+                    <mdc-list-item>Process</mdc-list-item>
+                  </mdc-list>
+                </mdc-menu>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+
     </div>
+
+
+
     <br>
     <br>
     

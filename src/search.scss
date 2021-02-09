@@ -13,6 +13,38 @@
       background-color: #FEFFCA;
   }
 }
+
+.search-form {
+ &__filter-wrapper {
+   display: flex;
+   justify-content: space-between;
+ }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    &._align-right {
+      align-items: flex-start;
+    }
+    &._align-left {
+      align-items: flex-end;
+    }
+  }
+  &__wrapper-collection-filter {
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  &__sub-menu {
+    .mdc-menu.mdc-menu-surface--open {
+      top: 20px !important;
+    }
+  }
+  &__sub-menu {
+    &:not(:last-child) {
+      margin-left: 16px;
+    }
+  }
+}
 .mdc-expandable .mdc-expandable__header.mdc-expandable__header--closed,
 .mdc-expandable .mdc-expandable__header.mdc-expandable__header--open {
   height: 30px;
