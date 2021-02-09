@@ -47,7 +47,7 @@
                 </a>
               </div>
               <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-                <a repeat.for="filter of item.filteredWith" href="#">${filter.value}</a>/
+                <a repeat.for="filter of item.filteredWith" href="#">${filter.value}</a>
               </div>
             </div>
             <div class="mdc-layout-grid__inner">
@@ -59,16 +59,37 @@
             </div>
             <div class="mdc-layout-grid__inner">
               <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mdc-expandable accordion>
-                  <div slot="caption">Lorem ipsum dolor...</div>
-                  Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque
-                  voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per
-                  an legere iriure blandit. Veri iisque accusamus an pri.
+                <mdc-expandable  class="mdc-expandable"
+                                 accordion>
+                  <div slot="caption">
+                    <div class="caption__item">
+                      <span class="caption__item-text">דירוג:</span>
+                      <span class="caption__item-text" repeat.for="rank of item.ranks">
+                        <span>${rank.name} - ${rank.value}</span>
+                      </span>
+                    </div>
+                    <div class="caption__item">
+                      <span class="caption__item-text">quibusdam</span>
+                    </div>
+                  </div>
+                  <div class="content__wrapper">
+                    <div class="content-item">
+                      <span class="content__item-title"><b>ישויות:</b></span>
+                      <div class="content-item-body">
+                        something...
+                      </div>
+                    </div>
+                    <div class="content__item">
+                    <span class="content__item-title"><b>תיקים קשורים:</b></span>
+                      <div class="content__item-body">
+                        something...
+                      </div>
+                    </div>
+                  </div>
                 </mdc-expandable>
               </div>
             </div>
             <div class="mdc-layout-grid__inner">
-              
             </div>
           </div>          
         </div>        

@@ -13,3 +13,93 @@
       background-color: #FEFFCA;
   }
 }
+.mdc-expandable .mdc-expandable__header.mdc-expandable__header--closed,
+.mdc-expandable .mdc-expandable__header.mdc-expandable__header--open {
+  height: 30px;
+}
+.mdc-expandable {
+  box-shadow: none;
+ &.mdc-expandable--open {
+   margin: 0;
+ }
+}
+.mdc-expandable {
+  .mdc-expandable__header {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0;
+    transition: background-color .3s;
+    pointer-events: none;
+    &:after,
+    &:before {
+      background-color: unset;
+    }
+    &.mdc-ripple-upgraded {
+      --mdc-ripple-fg-opacity: unset;
+    }
+    &.mdc-expandable__header--closed {
+      .mdc-expandable__dropdown-icon {
+        background: url(assets/expander-icon.svg) 100% 100% no-repeat;
+        z-index: 3;
+        transition: transform .2s;
+        transform: rotate(0deg);
+        height: 15px;
+        width: 15px;
+        margin-right: 0;
+        pointer-events: auto;
+      }
+    }
+    &.mdc-expandable__header--open {
+      .mdc-expandable__dropdown-icon {
+        background: url(assets/expander-icon.svg) 100% 100% no-repeat;
+        transform: rotate(-90deg);
+        transition: transform .2s;
+        z-index: 3;
+        height: 15px;
+        width: 15px;
+        margin-right: 0;
+        pointer-events: auto;
+      }
+    }
+    .mdc-expandable__dropdown-icon-graphic {
+      display: none;
+    }
+  }
+  .mdc-expandable__caption {
+    padding-right: 16px;
+    max-width: 72%;
+    margin-right: auto;
+    .au-target {
+      display: flex;
+      justify-content: space-between;
+    }
+    .caption {
+      &__item {
+        &-text {
+          &:not(:last-child) {
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+  }
+  .mdc-expandable__content {
+    padding-top: 8px !important;
+    padding-right: 0 !important;
+    .content {
+      &__wrapper {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+      &__item {
+        display: flex;
+        flex-direction: column;
+        &-title {
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+}
