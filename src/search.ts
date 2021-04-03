@@ -1,6 +1,7 @@
-import { SearchResultDto, SearchResultItemFragmentDto } from './data/data-provider';
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { SearchResultDto, SearchResultItemFragmentDto } from './data/data-provider';
 import { NavigationInstruction, RouteConfig } from 'aurelia-router';
 import { DataProvider } from 'data';
 
@@ -16,7 +17,8 @@ export class Search {
   displayModel: any = {};
 
   data: SearchResultDto;
-  toggle: false;
+  toggle: boolean = false; 
+
   private async activate(params: any, _: RouteConfig, navigationInstruction: NavigationInstruction): Promise<void> {
     this.displayModel.searchFor = JSON.stringify(params);
     this.displayModel.router = JSON.stringify(navigationInstruction.queryParams);
