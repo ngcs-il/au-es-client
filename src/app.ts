@@ -11,8 +11,7 @@ import { RouterConfiguration, Router } from 'aurelia-router';
       config.options.root = '/';
       config.options.compareQueryParams = true;
       config.map([
-        { route: ['', 'search'], name: 'search', moduleId: PLATFORM.moduleName('search')},
-        { route: ['', 'search*'], name: 'search', moduleId: PLATFORM.moduleName('search')}
+        { route: ['', 'search'], name: 'search', moduleId: PLATFORM.moduleName('search')}
       ]);
     }
     
