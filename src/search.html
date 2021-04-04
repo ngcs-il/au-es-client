@@ -1,23 +1,28 @@
 <template>
   <require from="./search.scss"></require>
 
-  <form action="/" target="_self" method="get">
+  <form >
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-11">
           <mdc-text-field name="q" value.two-way="model.q" outlined label="Search" style="width: 100%; height: 36px;"></mdc-text-field>        
         </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1">
-          <input type="submit" value="Search" mdc-button unelevated class="big-round-shape-button">
+          <!-- <input type="submit" value="Search" mdc-button unelevated class="big-round-shape-button"> -->
+          <button click.delegate="search()">Search</button>
         </div>
       </div>
     </div>
     
     <br>
     <br>
-    <div if.bind="displayModel.searchFor.length">
-      <label><input type="checkbox" name="withCherry" checked.bind="model.withCherry">Cherry</label>
-      <label><input type="checkbox" name="withApple" checked.bind="model.withApple">Apple</label>
+    <div if.bind="data">
+      <label for="withCherry">Cherry</label>
+      <input type="checkbox" name="withCherry" checked.bind="model.withCherry" change.delegate="search()">
+      <br>
+      <label for="withApple">Apple</label>
+      <input type="checkbox" name="withApple" checked.bind="model.withApple" change.delegate="search()">
+      
     </div>
     <br>
     <br>
@@ -42,7 +47,7 @@
                 </a>
               </div>
               <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-                <a href="#" title="Link to Main Case of the Document">
+                <a href="#" title="Link to the Document">
                   ${item.mainCase.id}
                 </a>
               </div>
