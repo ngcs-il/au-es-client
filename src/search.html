@@ -1,7 +1,6 @@
 <template>
   <require from="./search.scss"></require>
 
-
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-11">
@@ -14,7 +13,6 @@
     </div>
         
     <div>
-
       <div if.bind="data" class="mdc-layout-grid">
         <mdc-layout-grid class="demo-grid">
           <mdc-layout-grid-inner>
@@ -27,73 +25,95 @@
             <mdc-layout-grid-cell span="2"></mdc-layout-grid-cell>
             <mdc-layout-grid-cell span="10"></mdc-layout-grid-cell>            
           </mdc-layout-grid-inner>
+
         </mdc-layout-grid>
-      </div>
-      
+      </div>      
     </div>
-            <div mdc-menu-surface-anchor ref="demoSelectionAnchor">
-              <button mdc-button role="button" click.delegate="demoSelectionGroup.open = !demoSelectionGroup.open">
-                Search in...
-              </button>
-              <mdc-menu view-model.ref="demoSelectionGroup" anchor.bind="demoSelectionAnchor">
-                <mdc-list>
-                  <mdc-menu-selection-group>
-                    <mdc-list-item>
-                      <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
-                      Single
-                    </mdc-list-item>
-                    <mdc-list-item disabled>
-                      <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
-                      1.15
-                    </mdc-list-item>
-                    <mdc-list-item>
-                      <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
-                      Double
-                    </mdc-list-item>
-                    <mdc-list-item>
-                      <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
-                      Custom: 1.2
-                    </mdc-list-item>
-                  </mdc-menu-selection-group>
-                  <mdc-list-divider></mdc-list-divider>
-                  <mdc-menu-selection-group>
-                    <mdc-list-item>
-                      <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
-                      Item
-                    </mdc-list-item>
-                    <mdc-list-item>
-                      <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
-                      Another Item
-                    </mdc-list-item>
-                  </mdc-menu-selection-group>
-                  <mdc-list-divider></mdc-list-divider>
-                  <mdc-list-item>Add space before paragraph</mdc-list-item>
-                  <mdc-list-item>Add space after paragraph</mdc-list-item>
-                  <mdc-list-divider></mdc-list-divider>
-                  <mdc-list-item>Custom spacing...</mdc-list-item>
-                </mdc-list>
-              </mdc-menu>
+    
+      <div mdc-menu-surface-anchor>
+        <button  mdc-button class="demo-density-button" mdc-typography-button click.trigger="hierarchical.open = !hierarchical.open" ref="menuEntry">Show Menu<mdc-icon>arrow_drop_down</mdc-icon></button>
+        <mdc-menu id="menu1" ref="parentElement" view-model.ref="hierarchical" anchor.bind="menuEntry" anchor-corner="BOTTOM_START" stay-open-on-selection>
+          <mdc-list wrap-focus.bind="wrapFocus" tabindex="-1">
+            <mdc-list-item mdclistitem:action.trigger="hierarchical.open = false">Item 1</mdc-list-item>
+            <mdc-list-item mdclistitem:action.trigger="hierarchical.open = false">Item 2</mdc-list-item>
+            <mdc-list-divider></mdc-list-divider>
+            <mdc-list-item mdclistitem:action.trigger="(subMenu.open = true) && $event.stopPropagation()" ref="item3">
+              Item 3<mdc-icon mdc-list-item-meta>arrow_left</mdc-icon>
+            </mdc-list-item>
+            <mdc-list-item mdclistitem:action.trigger="hierarchical.open = false">Item 4</mdc-list-item>
+          </mdc-list>
+        </mdc-menu>
+      </div>
+      <mdc-menu anchor.bind="item3" 
+                mdcmenu:selected.trigger="onMenuSelect($event.detail, searchSources[$event.detail.index])" 
+                view-model.ref="subMenu" hoist-to-body anchor-corner="TOP_LEFT" 
+                anchor-margin.to-view="{left: (-1 * parentElement.offsetWidth) - 40}">
+        <mdc-list tabindex="-1" dir="rtl">
+          <mdc-menu-selection-group>
+            <mdc-list-item repeat.for="item of searchSources">
+              <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
+              ${item.label}
+            </mdc-list-item>
+          </mdc-menu-selection-group>
+        </mdc-list>
+      </mdc-menu>
+    
+    <!-- <div mdc-menu-surface-anchor ref="demoSelectionAnchor">
+      <button mdc-button role="button" click.delegate="demoSelectionGroup.open = !demoSelectionGroup.open">
+        Search in...
+      </button>
+      <mdc-menu view-model.ref="demoSelectionGroup" anchor.bind="demoSelectionAnchor">
+        <mdc-list>
+          <mdc-menu-selection-group>
+            <mdc-list-item>
+              <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
+              Single
+            </mdc-list-item>
+            <mdc-list-item disabled>
+              <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
+              1.15
+            </mdc-list-item>
+            <mdc-list-item>
+              <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
+              Double
+            </mdc-list-item>
+            <mdc-list-item>
+              <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
+              Custom: 1.2
+            </mdc-list-item>
+          </mdc-menu-selection-group>
+          <mdc-list-divider></mdc-list-divider>
+          <mdc-menu-selection-group>
+            <mdc-list-item>
+              <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
+              Item
+            </mdc-list-item>
+            <mdc-list-item>
+              <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>
+              Another Item
+            </mdc-list-item>
+          </mdc-menu-selection-group>
+          <mdc-list-divider></mdc-list-divider>
+          <li class="mdc-list-item mdc-list-submenu" role="menuitem" tabindex="0"> A Sub Menu
+            <div class="mdc-simple-menu" tabindex="-1">
+                <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+                    <li class="mdc-list-item" role="menuitem" tabindex="0"> Sub menu entry 1 </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="0"> Sub menu entry 2 </li>
+                </ul>
             </div>
+          </li>
+         
+          <mdc-list-item>Add space after paragraph</mdc-list-item>
+          <mdc-list-divider></mdc-list-divider>
+          <mdc-list-item>Custom spacing...</mdc-list-item>
+        </mdc-list>
+      </mdc-menu>
+    </div> -->
             
-          </div>
-          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
 
-          </div>
-        </div>
-      </div>
-      <!-- <label for="withCherry">Cherry</label>
-      <input type="checkbox" name="withCherry" checked.bind="query.withCherry" change.delegate="search()">
-      <br>
-      <label for="withApple">Apple</label>
-      <input type="checkbox" name="withApple" checked.bind="query.withApple" change.delegate="search()"> -->
-      
-    </div>
-    <!-- <div>Search For: ${displayModel.searchFor ? displayModel.searchFor : 'HUY'}</div>
-    <br><br>
-    <div>Query: ${displayModel.router}</div> -->
-
-    <br><br><br><br>
-
+    </div>  
+    
     <div>
       <div class="mdc-layout-grid">
         <!-- The item starts here -->

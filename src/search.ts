@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { bindable, bindingMode, singleton } from 'aurelia-framework';
+import { bindable, bindingMode, computedFrom, singleton } from 'aurelia-framework';
+import { MDCMenuDistance } from '@material/menu-surface';
 import { SearchResultDto, SearchResultItemFragmentDto } from './data/data-provider';
 import { NavigationInstruction, RouteConfig, Router } from 'aurelia-router';
 import { DataProvider } from 'data';
@@ -27,7 +28,8 @@ export class Search {
       key: 'protocols',
       label: 'פרוטוקולים'
     }];    
-  
+    
+
   constructor(private router: Router) {}
 
   search() {
@@ -45,8 +47,8 @@ export class Search {
     this.router.navigate(fragment, { replace: false, trigger: true });
   }
  
-  onMenuSelect(event: { index: number; item: string }) {
-    console.log(event.index);
+  onMenuSelect(event: { index: number; item: any }, item) { 
+    console.log(`Selected Index is ${event.index}. Selected item is ${JSON.stringify(item)}`);
   }
 
   private searchSourceChanged(): void {

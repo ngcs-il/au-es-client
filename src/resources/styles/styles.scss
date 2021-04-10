@@ -40,3 +40,5 @@
 @use "@material/textfield/mdc-text-field";
 @use "@material/textfield/_index" as textfield;
 @use "@aurelia-mdc-web/text-field" as AuTextField;
+
+@include form-field.core-styles;

@@ -1,3 +1,12 @@
+@use '@material/button';
+
+.demo-density-button {
+  // Sets button density scale to `-3`, i.e. button height to `24px`.
+  @include button.density(-3);
+  @include button.ink-color(red);
+  @include button.container-fill-color(transparent);
+}
+
 .search-item {
   padding-bottom: 32px;
 }
